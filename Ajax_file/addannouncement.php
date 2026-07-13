@@ -23,8 +23,14 @@ if (isset($_FILES["image"]) && $_FILES["image"]["error"] === UPLOAD_ERR_OK) {
     $fileType   = pathinfo($filename, PATHINFO_EXTENSION);
 
     if (in_array($fileType, $allowTypes)) {
-        $folder = dirname(__DIR__) . "/image/" . $filename;
-        if (move_uploaded_file($_FILES["image"]["tmp_name"], $folder)) {
+        $upload_dir = dirname(__DIR__) . "/image/";
+        if (!is_dir($upload_dir)) {
+            @mkdir($upload_dir, 0777, true);
+        } else {
+            @chmod($upload_dir, 0777);
+        }
+        $folder = $upload_dir . $filename;
+        if (@move_uploaded_file($_FILES["image"]["tmp_name"], $folder)) {
             $imagePath = "image/" . $filename;
         }
     }
