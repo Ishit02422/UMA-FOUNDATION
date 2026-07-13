@@ -29,8 +29,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $phone      = mysqli_real_escape_string($con,$_POST['phone']??'');
     $dob        = mysqli_real_escape_string($con,$_POST['dob']??'');
     $school     = mysqli_real_escape_string($con,$_POST['school']??'');
-    $percentage = mysqli_real_escape_string($con,$_POST['percentage']??'');
-    $income     = mysqli_real_escape_string($con,$_POST['income']??'');
+    $percentage = floatval($_POST['percentage']??0);
+    $income     = floatval($_POST['income']??0);
     $reason     = mysqli_real_escape_string($con,$_POST['reason']??'');
     $date       = date('Y-m-d');
 
@@ -40,9 +40,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $ext = pathinfo($_FILES['document']['name'], PATHINFO_EXTENSION);
         $fname_file = 'scholarship_'.time().'.'.$ext;
         $upload_dir = '../scholarship_docs/';
-        if(!is_dir($upload_dir)) mkdir($upload_dir, 0777, true);
-        move_uploaded_file($_FILES['document']['tmp_name'], $upload_dir.$fname_file);
-        $doc_path = 'scholarship_docs/'.$fname_file;
+        if(!is_dir($upload_dir)) {
+            @mkdir($upload_dir, 0777, true);
+        } else {
+            @chmod($upload_dir, 0777); // Attempt to fix permission issue on Render
+        }
+        if(@move_uploaded_file($_FILES['document']['tmp_name'], $upload_dir.$fname_file)) {
+            $doc_path = 'scholarship_docs/'.$fname_file;
+        }
     }
 
     // Actual columns: uid, aid, adhar_card_image, status, school_unviersity_name,
@@ -60,11 +65,11 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
              income_certificate, fees_receipt)
             VALUES 
             ('$user_id','$sch_id','$adhar','0','$school',
-             '$percentage','$income',
+             '$percentage','N/A',
              '$income','0',
              '','',
              '','',
-             '','','',
+             '','',0,
              '','$doc_path')";
     if(mysqli_query($con,$sql)){
         $msg = 'success';
