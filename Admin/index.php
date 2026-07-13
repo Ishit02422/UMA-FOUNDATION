@@ -1,6 +1,11 @@
 <?php
 session_start();
-if ($_SESSION['role'] !== 'admin') {
+// Prevent browser bfcache from serving stale admin page
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     echo "<script>alert('Login is unsuccessful'); window.location='../login.php';</script>";
     exit;
 }
