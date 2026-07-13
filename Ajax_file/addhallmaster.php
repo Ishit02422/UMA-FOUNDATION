@@ -2,6 +2,10 @@
 session_start();
 include "../connect.php";
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_FILES["image"])) {
+    echo "no_data"; exit;
+}
+
 $allowTypes = array('jpg', 'jpeg', 'png', 'gif', 'JPG', 'GIF', 'PNG', 'JPEG');
 $filename = $_FILES["image"]["name"];
 $tempname = $_FILES["image"]["tmp_name"];
