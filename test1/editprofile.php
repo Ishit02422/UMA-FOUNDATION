@@ -1,3 +1,16 @@
+<?php
+session_start();
+include '../connect.php';
+
+// Prevent browser from showing stale/blank page via bfcache
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+if (!isset($_SESSION['id'])) {
+    echo "<script>alert('Please login first.');window.location='../login.php';</script>"; exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 

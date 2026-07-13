@@ -1,6 +1,16 @@
-<?php 
+<?php
 session_start();
 
+// Prevent browser from showing stale/blank page via bfcache
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
+header("Expires: 0");
+
+// Guard: if no session email, redirect to registration
+if (!isset($_SESSION["email"]) || empty($_SESSION["email"])) {
+    header("Location: Registration.php");
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
