@@ -75,7 +75,7 @@ INSERT INTO `tbl_announcement` (`id`, `title`, `status`, `type_id`, `description
 
 CREATE TABLE `tbl_announcement_type` (
   `id` int(11) NOT NULL,
-  `type_name` varchar(10) NOT NULL,
+  `type_name` varchar(100) NOT NULL,
   `status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
