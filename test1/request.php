@@ -2,6 +2,19 @@
 session_start();
 include '../connect.php';
 
+if(!isset($_SESSION['id'])){
+    echo "<script>alert('Please login first.');window.location='../login.php';</script>"; exit;
+}
+
+$user_id = $_SESSION['id'];
+
+// Fetch latest user info and sync session role
+$uq = mysqli_query($con,"SELECT * FROM tbl_user WHERE id='$user_id' LIMIT 1");
+$user = $uq ? $uq->fetch_assoc() : null;
+if ($user) {
+    $_SESSION['role'] = $user['role'];
+}
+
 if(!isset($_SESSION['role'])){
     echo "<script>alert('Please login first.');window.location='../login.php';</script>"; exit;
 }
@@ -12,12 +25,7 @@ if($_SESSION['role']!='Member' && $_SESSION['role']!='cMember'){
     echo "<script>alert('Unauthorised Page.');window.location='index.php';</script>"; exit;
 }
 
-$role    = $_SESSION['role'];
-$user_id = $_SESSION['id'];
-
-// Fetch user info
-$uq = mysqli_query($con,"SELECT * FROM tbl_user WHERE id='$user_id' LIMIT 1");
-$user = $uq ? $uq->fetch_assoc() : [];
+$role = $_SESSION['role'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
