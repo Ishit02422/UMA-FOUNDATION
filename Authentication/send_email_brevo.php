@@ -1,19 +1,27 @@
 <?php
 function sendEmailBrevo($toEmail, $toName, $subject, $htmlBody, $textBody = '') {
     $apiKey = trim(getenv('BREVO_API_KEY') ?: '');
+    $apiKey = trim($apiKey, "\"'"); // Strip single/double quotes
+    
     if ($apiKey === '') {
         return ['success' => false, 'error' => 'BREVO_API_KEY not set'];
     }
 
     $senderEmail = trim(getenv('BREVO_SENDER_EMAIL') ?: '22bmiit022@gmail.com');
+    $senderEmail = trim($senderEmail, "\"'"); // Strip single/double quotes
+    
     $senderName  = trim(getenv('BREVO_SENDER_NAME')  ?: 'Uma Foundation');
+    $senderName  = trim($senderName, "\"'"); // Strip single/double quotes
+    
+    $toEmail = trim($toEmail, "\"' \t\n\r\0\x0B"); // Strip quotes and whitespaces
+    $toName = trim($toName, "\"' \t\n\r\0\x0B");
 
-    // Build JSON manually to avoid encoding issues
+    // Build JSON payload
     $payload = json_encode([
         'sender'      => ['name' => $senderName, 'email' => $senderEmail],
-        'to'          => [['email' => trim($toEmail), 'name' => $toName ?: trim($toEmail)]],
+        'to'          => [['email' => $toEmail, 'name' => $toName ?: $toEmail]],
         'subject'     => $subject,
-        'textContent' => 'Your OTP is: ' . strip_tags($htmlBody),
+        'textContent' => $textBody ?: ('Your OTP is: ' . strip_tags($htmlBody)),
         'htmlContent' => $htmlBody,
     ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
@@ -49,6 +57,6 @@ function sendEmailBrevo($toEmail, $toName, $subject, $htmlBody, $textBody = '') 
     if ($httpCode >= 200 && $httpCode < 300) {
         return ['success' => true];
     }
-    return ['success' => false, 'error' => "HTTP $httpCode: " . ($res['message'] ?? $response)];
+    return ['success' => false, 'error' => "HTTP $httpCode: " . ($res['message'] ?? $response) . " (Payload: $payload)"];
 }
 ?>
