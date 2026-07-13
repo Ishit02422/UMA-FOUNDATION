@@ -1,0 +1,88 @@
+/* Reset some default browser styles */
+body, h1, p, ul, li, a, button, input, table, tr, td {
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    border: none;
+    outline: none;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('test1/assets/images/meeting-01.jpg'); /* Adjust the path as necessary */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+    padding: 30px 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    margin: 20px auto;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: black; /* Dark blue */
+}
+
+.input-box {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-box label {
+    display: block;
+    font-size: 1em;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.input-box input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+button.btn {
+    background-color: black; /* Dark blue */
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s;
+    width: 100%;
+}
+
+button.btn:hover {
+    background-color: #0059b3; /* Lighter blue */
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 1em;
+}
+
+.success-message {
+    color: green;
+    margin-top: 10px;
+    font-size: 1em;
+}
