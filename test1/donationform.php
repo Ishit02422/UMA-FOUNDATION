@@ -227,11 +227,11 @@ body{font-family:'Inter',sans-serif;background:#0d1117;color:#e6edf3;}
       <h3><i class="fa fa-phone"></i> Need Help?</h3>
       <div class="info-item">
         <div class="info-icon"><i class="fa fa-phone"></i></div>
-        <div><h6>Phone</h6><p>+91 2622 290562</p></div>
+        <div><h6>Phone</h6><p>+91 79 2630 1234</p></div>
       </div>
       <div class="info-item">
         <div class="info-icon"><i class="fa fa-envelope"></i></div>
-        <div><h6>Email</h6><p>22bmiit022@gmail.com</p></div>
+        <div><h6>Email</h6><p>info@umafoundation.org</p></div>
       </div>
     </div>
   </div>

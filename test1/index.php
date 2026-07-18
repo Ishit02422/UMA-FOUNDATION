@@ -281,10 +281,10 @@ body{font-family:'Inter',sans-serif;background:#0d1117;color:#e6edf3;overflow-x:
       </div>
       <div class="contact-box">
         <h3>Contact Info</h3>
-        <div class="ci-item"><div class="ci-icon"><i class="fa fa-phone"></i></div><div><h6>Phone</h6><span>+91 2622 290562</span></div></div>
-        <div class="ci-item"><div class="ci-icon"><i class="fa fa-envelope"></i></div><div><h6>Email</h6><span>22bmiit022@gmail.com</span></div></div>
-        <div class="ci-item"><div class="ci-icon"><i class="fa fa-location-dot"></i></div><div><h6>Address</h6><span>Uka Tarsadia University, Bardoli, Gujarat</span></div></div>
-        <div class="ci-item"><div class="ci-icon"><i class="fa fa-globe"></i></div><div><h6>Website</h6><a href="https://umafoundation.site" style="color:#a5b4fc;">umafoundation.site</a></div></div>
+        <div class="ci-item"><div class="ci-icon"><i class="fa fa-phone"></i></div><div><h6>Phone</h6><span>+91 79 2630 1234</span></div></div>
+        <div class="ci-item"><div class="ci-icon"><i class="fa fa-envelope"></i></div><div><h6>Email</h6><span>info@umafoundation.org</span></div></div>
+        <div class="ci-item"><div class="ci-icon"><i class="fa fa-location-dot"></i></div><div><h6>Address</h6><span>Jaspur, Ahmedabad - 382421, Gujarat, India</span></div></div>
+        <div class="ci-item"><div class="ci-icon"><i class="fa fa-globe"></i></div><div><h6>Website</h6><a href="https://uma-foundation.onrender.com" style="color:#a5b4fc;">uma-foundation.onrender.com</a></div></div>
       </div>
     </div>
   </div>
