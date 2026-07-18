@@ -302,6 +302,12 @@ body{font-family:'Inter',sans-serif;background:#0d1117;color:#e6edf3;overflow-x:
 const obs=new IntersectionObserver(entries=>entries.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>{e.target.style.opacity='1';e.target.style.transform='translateY(0)';},i*70);}}),{threshold:.1});
 document.querySelectorAll('.svc-card,.ann-card,.stat-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='opacity .5s ease,transform .5s ease';obs.observe(el);});
 window.addEventListener('scroll',()=>{const n=document.querySelector('.nav');n.style.background=window.scrollY>40?'rgba(13,17,23,.98)':'rgba(13,17,23,.92)';});
+
+document.querySelector('.contact-box form')?.addEventListener('submit', function(e){
+  e.preventDefault();
+  alert('Thank you! Your message has been sent successfully. We will get back to you soon.');
+  this.reset();
+});
 </script>
 </body>
 </html>
