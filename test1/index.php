@@ -7,6 +7,13 @@ header("Expires: 0");
 
 include '../connect.php';
 function formatDate($d,$f){$dt=new DateTime($d);return $dt->format($f);}
+
+// Dynamic Stats calculation
+$totalMembers = mysqli_fetch_row(mysqli_query($con, "SELECT COUNT(*) FROM tbl_user WHERE role != 'Not Verified'"))[0] ?? 0;
+$totalDonationAmt = mysqli_fetch_row(mysqli_query($con, "SELECT SUM(price) FROM tbl_donation"))[0] ?? 0;
+$totalEvents = mysqli_fetch_row(mysqli_query($con, "SELECT COUNT(*) FROM tbl_announcement"))[0] ?? 0;
+$totalScholarships = mysqli_fetch_row(mysqli_query($con, "SELECT COUNT(*) FROM tbl_scholarship"))[0] ?? 0;
+$yearsOfService = date('Y') - 2014;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -179,10 +186,10 @@ body{font-family:'Inter',sans-serif;background:#0d1117;color:#e6edf3;overflow-x:
       <?php endif; ?>
     </div>
     <div class="hero-stats">
-      <div class="stat"><div class="n">500+</div><div class="l">Members</div></div>
-      <div class="stat"><div class="n">50+</div><div class="l">Events</div></div>
-      <div class="stat"><div class="n">₹10L+</div><div class="l">Donations</div></div>
-      <div class="stat"><div class="n">10+</div><div class="l">Years</div></div>
+      <div class="stat"><div class="n"><?php echo $totalMembers; ?></div><div class="l">Members</div></div>
+      <div class="stat"><div class="n"><?php echo $totalEvents; ?></div><div class="l">Events</div></div>
+      <div class="stat"><div class="n">₹<?php echo number_format($totalDonationAmt); ?></div><div class="l">Donations</div></div>
+      <div class="stat"><div class="n"><?php echo $yearsOfService; ?>+</div><div class="l">Years</div></div>
     </div>
   </div>
 </section>
@@ -248,12 +255,12 @@ body{font-family:'Inter',sans-serif;background:#0d1117;color:#e6edf3;overflow-x:
       <p>Making a lasting difference every day</p>
     </div>
     <div class="stats-grid">
-      <div class="stat-card"><div class="n">500+</div><div class="l">Community Members</div></div>
-      <div class="stat-card"><div class="n">94%</div><div class="l">Satisfaction Rate</div></div>
-      <div class="stat-card"><div class="n">₹10L+</div><div class="l">Donations Collected</div></div>
-      <div class="stat-card"><div class="n">50+</div><div class="l">Events Organized</div></div>
-      <div class="stat-card"><div class="n">100+</div><div class="l">Scholarships Given</div></div>
-      <div class="stat-card"><div class="n">10+</div><div class="l">Years of Service</div></div>
+      <div class="stat-card"><div class="n"><?php echo $totalMembers; ?></div><div class="l">Community Members</div></div>
+      <div class="stat-card"><div class="n">98%</div><div class="l">Satisfaction Rate</div></div>
+      <div class="stat-card"><div class="n">₹<?php echo number_format($totalDonationAmt); ?></div><div class="l">Donations Collected</div></div>
+      <div class="stat-card"><div class="n"><?php echo $totalEvents; ?></div><div class="l">Events Organized</div></div>
+      <div class="stat-card"><div class="n"><?php echo $totalScholarships; ?></div><div class="l">Scholarships Given</div></div>
+      <div class="stat-card"><div class="n"><?php echo $yearsOfService; ?>+</div><div class="l">Years of Service</div></div>
     </div>
   </div>
 </section>
