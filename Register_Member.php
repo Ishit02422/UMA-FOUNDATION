@@ -24,10 +24,11 @@ $pass    = $_POST["password"];
 $role    = "Not Verified";
 
 // Convert gender string to tinyint (gender column is tinyint in DB)
-$genderStr = strtolower(trim($_POST["gender"]));
-if ($genderStr === 'male') {
+// Registration.php form sends M / F / O
+$genderStr = strtoupper(trim($_POST["gender"]));
+if ($genderStr === 'M') {
     $gender = 1;
-} elseif ($genderStr === 'female') {
+} elseif ($genderStr === 'F') {
     $gender = 2;
 } else {
     $gender = 3; // Other
