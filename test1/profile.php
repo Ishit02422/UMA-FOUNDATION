@@ -5,6 +5,13 @@ header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Pragma: no-cache");
 header("Expires: 0");
 
+if (!isset($_SESSION['id'])) {
+    echo "<script>alert('Please login first.');window.location='../login.php';</script>";
+    exit;
+}
+
+
+
 
 ?>
 <!DOCTYPE html>
