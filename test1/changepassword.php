@@ -2,6 +2,7 @@
 session_start();
 if(!isset($_SESSION['email']) || empty($_SESSION['email'])){
     echo "<script>alert('Session expired. Please use Forgot Password first.');window.location='../login.php';</script>";
+    exit;
 }
 ?>
 <!DOCTYPE html>
